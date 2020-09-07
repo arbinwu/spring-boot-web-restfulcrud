@@ -19,6 +19,7 @@ public class DepartmentDao {
         departments.put(104, new Department(104, "D-DD"));
         departments.put(105, new Department(105, "D-EE"));
 
+
     }
 
     public Collection<Department> getDepartment() {

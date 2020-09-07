@@ -37,7 +37,7 @@ public class MyMvcConfig {
             public void addInterceptors(InterceptorRegistry registry) {
                 //拦截任意路径下的任意请求
                 //也可以排除某些请求
-                //springboot 已经做完了静态资源映射，不需要在处理
+                //静态资源也需要放行
                 registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
                 .excludePathPatterns("/index.html","/","/user/login","/webjars/**","/asserts/**","/static/**");
 //                super.addInterceptors(registry);
