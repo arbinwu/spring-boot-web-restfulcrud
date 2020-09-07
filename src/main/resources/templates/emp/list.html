@@ -62,7 +62,7 @@
 									<th>lastName</th>
 									<th>email</th>
 									<th>gender</th>
-									<th>departmentName</th>
+									<th>department</th>
 									<th>birth</th>
 									<th>操作</th>
 								</tr>
@@ -73,7 +73,8 @@
 									<td>[[${emp.lastName}]]</td>
 									<td th:text="${emp.email}"></td>
 									<td th:text="${emp.gender}==0?'女':'男'"></td>
-									<td th:text="${emp.department.getDepartment()}"></td>
+									<!--/*@thymesVar id="departmentName" type=""*/-->
+									<td th:text="${emp.department.department}"></td>
 									<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}"></td>
 									<td>
 										<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
