@@ -56,7 +56,7 @@ public class EmployeeController {
     }
 
     // 访问修改页面  查出指定员工 在页面回显
-    @GetMapping("emp/{id}")
+    @GetMapping("/emp/{id}")
     public String toEditPage(@PathVariable("id") Integer id, Model model) {
         //查出员工路径
         Employee employee = employeeDao.get(id);
@@ -74,5 +74,14 @@ public class EmployeeController {
         System.out.println(employee);
         employeeDao.save(employee);
         return "redirect:emps";
+    }
+
+    //员工删除
+    @DeleteMapping("/emp/{id}")
+    public String deleteEmp(@PathVariable("id") Integer id) {
+//        System.out.println(id);
+        employeeDao.delete(id);
+        System.out.println(employeeDao.getAll());
+        return "redirect:/emps";  //需要加 /  否则报错无法重定向
     }
 }
