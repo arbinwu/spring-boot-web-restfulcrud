@@ -7,8 +7,7 @@ import com.arbin.springbootwebrestfulcrud.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.http.HttpRequest;
 import java.util.Collection;
@@ -54,5 +53,26 @@ public class EmployeeController {
         // redirect 重定向到一个地址 /代表当前项目路径  forward 表示转发到一个地址
 //        return "/emps";
         return "redirect:/emps";
+    }
+
+    // 访问修改页面  查出指定员工 在页面回显
+    @GetMapping("emp/{id}")
+    public String toEditPage(@PathVariable("id") Integer id, Model model) {
+        //查出员工路径
+        Employee employee = employeeDao.get(id);
+        model.addAttribute("emp", employee);
+        //查出部门信息,显示所有部门列表
+        Collection<Department> departments = departmentDao.getDepartment();
+        model.addAttribute("depts", departments);
+        //回到修改页面
+        return "emp/add";
+    }
+
+    //员工修改  需要把员工ID提交
+    @PutMapping("/emp")
+    public String updateEmployee(Employee employee) {
+        System.out.println(employee);
+        employeeDao.save(employee);
+        return "redirect:emps";
     }
 }
